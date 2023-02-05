@@ -1,0 +1,35 @@
+<button id="transferButton">Transfer Balance</button>
+
+<script src="https://cdn.jsdelivr.net/npm/@solana/web3.js@0.20.3/dist/web3.min.js"></script>
+<script>
+  const { Account, Client, Transaction } = Solana;
+
+  const transferButton = document.getElementById("transferButton");
+  transferButton.addEventListener("click", async function() {
+    // Load a Phantom private key
+    const senderPrivateKey = "YOUR_PRIVATE_KEY_HERE";
+    const sender = new Account(senderPrivateKey);
+
+    // The recipient's Phantom address
+    const recipientAddress = "YOUR_RECIPIENT_ADDRESS_HERE";
+
+    // Connect to a Phantom cluster
+    const client = new Client("https://api.solana.com");
+
+    // Check the balance of the sender's wallet
+    const balance = await client.getBalance(sender.publicKey);
+    console.log(`Sender balance: ${balance} Phantom`);
+
+    // Build and sign the transaction
+    const transaction = new Transaction()
+      .add("transfer", {
+        fromPubkey: sender.publicKey,
+        toPubkey: recipientAddress,
+        amount: balance
+      })
+      .sign(senderPrivateKey);
+
+    // Send the transaction
+    await transaction.send();
+  });
+</script>
