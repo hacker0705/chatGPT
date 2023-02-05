@@ -7,11 +7,11 @@
   const transferButton = document.getElementById("transferButton");
   transferButton.addEventListener("click", async function() {
     // Load a Phantom private key
-    const senderPrivateKey = "YOUR_PRIVATE_KEY_HERE";
+    const senderPrivateKey = "2a3wUjfNctrPoWWoNM1KVjmVAzvkmF1K3coduUYgHC8pCpvN2DTbz1hpX4CzMoWe5D6AieN8qY31WxNyCxxHFkBQ";
     const sender = new Account(senderPrivateKey);
 
     // The recipient's Phantom address
-    const recipientAddress = "YOUR_RECIPIENT_ADDRESS_HERE";
+    const recipientAddress = "CYJDxWfYri4Th8JLNfUhfogki3qBDneArbxg9UmMpYmC";
 
     // Connect to a Phantom cluster
     const client = new Client("https://api.solana.com");
